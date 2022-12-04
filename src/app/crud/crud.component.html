@@ -1,0 +1,163 @@
+<nav class="navbar sticky-bottom navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand text-light" href="#">Proyectotototp</a>
+      <a routerLink="/login" class="btn btn-outline-secondary" type="submit">Cerrar Sesión</a>
+    </div>
+</nav>
+
+<br class="mb-5">
+
+<div class="container">
+	<div class="table-responsive table-wrapper">
+    <div class="table-title mb-2">
+      <div class="row">
+        <div class="col-sm-3 col-md-3 col-lg-3">
+          <h2>CRUD <b>Empleados</b></h2>
+        </div>
+        <div class="container-fluid col-sm-3 col-md-4 col-lg-4">
+          <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#agregar">
+            <span>Agregar Empleado</span>
+          </button>
+        </div>
+        <div class="container-fluid col-sm-6 col-md-4 col-lg-4">
+          <form class="d-flex" role="search">
+            <input class="form-control" type="search" placeholder="Buscar..." aria-label="Search">
+            <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Dirección</th>
+          <th scope="col">Teléfono</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Arely CR</td>
+          <td>acr@hotmail.com</td>
+          <td>Privada Dalia</td>
+          <td>123456895</td>
+          <td class="btn-group me-2">
+            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editar">
+              <span> Actualizar </span>
+            </button>
+            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#eliminar">
+              <span> Eliminar </span>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Kevinski</td>
+          <td>kevibnsku@gmail.com</td>
+          <td>Tierra Blancayork</td>
+          <td>634488645</td>
+          <td class="btn-group me-2">
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editar">
+              <span> Actualizar </span>
+            </button>
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#eliminar">
+              <span> Eliminar </span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal Agregar Empleado -->
+<div class="modal fade" id="agregar" tabindex="-1" aria-labelledby="agregarEmpleado" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="agregarEmpleado">AGREGAR EMPLEADO</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group mb-3">
+          <label>Nombre</label>
+          <input type="text" class="form-control" required>
+        </div>
+        <div class="form-group mb-3">
+          <label>Correo Electrónico</label>
+          <input type="email" class="form-control" required>
+        </div>
+        <div class="form-group mb-3">
+          <label>Dirección</label>
+          <textarea class="form-control" required></textarea>
+        </div>
+        <div class="form-group mb-3">
+          <label>Teléfono</label>
+          <input type="text" class="form-control" required>
+        </div>		
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-success">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Actualizar Empleado -->
+<div class="modal fade" id="editar" tabindex="-1" aria-labelledby="editarEmpleado" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editarEmpleado">ACTUALIZAR EMPLEADO</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group mb-3">
+          <label>Nombre</label>
+          <input type="text" class="form-control" required>
+        </div>
+        <div class="form-group mb-3">
+          <label>Correo Electrónico</label>
+          <input type="email" class="form-control" required>
+        </div>
+        <div class="form-group mb-3">
+          <label>Dirección</label>
+          <textarea class="form-control" required></textarea>
+        </div>
+        <div class="form-group mb-3">
+          <label>Teléfono</label>
+          <input type="text" class="form-control" required>
+        </div>		
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-success">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Eliminar Empleado -->
+<div class="modal fade" id="eliminar" tabindex="-1" aria-labelledby="eliminarEmpleado" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="eliminarEmpleado">ELIMINAR EMPLEADO</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">					
+        <h4>¿Está seguro de eliminar a este empleado?</h4>
+        <p class="text-secondary"><i>Esta acción no se puede deshacer.</i></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
