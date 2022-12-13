@@ -21,8 +21,8 @@
         </div>
         <div class="container-fluid col-sm-6 col-md-4 col-lg-4">
           <form class="d-flex" role="search">
-            <input class="form-control" type="search" placeholder="Buscar..." aria-label="Search">
-            <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+            <input name="idBusqueda" class="form-control" type="search" placeholder="Buscar ID..." [(ngModel)]="idBusqueda">
+            <button class="btn btn-outline-secondary" type="submit" (click)="buscar()">Buscar</button>
           </form>
         </div>
       </div>
@@ -31,37 +31,27 @@
       <thead>
         <tr>
           <th scope="col">ID</th>
-          <th scope="col">Nombre de Usuario</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Dirección</th>
+          <th scope="col">Télefono</th>
           <th scope="col">Correo</th>
           <th scope="col">Contraseña</th>
           <th scope="col">Acciones</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngFor="let usr of usuarios; let i = index"> <!--variables momentaneas por cada usuario-->
         <tr>
-          <th scope="row">1</th>
-          <td>Arely CR</td>
-          <td>acr@hotmail.com</td>
-          <td>tucola</td>
+          <th scope="row">{{usr.id}}</th>
+          <td>{{usr.name}}</td>
+          <td>{{usr.address}}</td>
+          <td>{{usr.cellphone}}</td>
+          <td>{{usr.email}}</td>
+          <td>{{usr.password}}</td>
           <td class="btn-group me-2">
-            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editar">
+            <button (click)="setusr(usr)" type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editar">
               <span> Actualizar </span>
             </button>
-            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#eliminar">
-              <span> Eliminar </span>
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Kevinski</td>
-          <td>kevibnsku@gmail.com</td>
-          <td>1234</td>
-          <td class="btn-group me-2">
-            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editar">
-              <span> Actualizar </span>
-            </button>
-            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#eliminar">
+            <button (click)="setusr(usr)" type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#eliminar">
               <span> Eliminar </span>
             </button>
           </td>
@@ -82,20 +72,28 @@
       <div class="modal-body">
         <div class="form-group mb-3">
           <label>Nombre de Usuario</label>
-          <input type="text" placeholder="Ingrese su nombre" class="form-control" required>
+          <input type="text" placeholder="Ingrese su nombre" class="form-control" [(ngModel)]="usuario.name" required>
         </div>
         <div class="form-group mb-3">
+          <label>Dirección</label>
+          <textarea class="form-control" [(ngModel)]="usuario.address" required></textarea>
+        </div>
+        <div class="form-group mb-3">
+          <label>Teléfono</label>
+          <input type="text" class="form-control" [(ngModel)]="usuario.cellphone" required>
+        </div>		
+        <div class="form-group mb-3">
           <label>Correo Electrónico</label>
-          <input type="email" class="form-control" required>
+          <input type="email" class="form-control" [(ngModel)]="usuario.email" required>
         </div>
         <div class="form-group mb-3">
           <label>Contraseña</label>
-          <input type="password" class="form-control" required>
+          <input type="password" class="form-control" [(ngModel)]="usuario.password" required>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success">Guardar</button>
+        <button type="button" class="btn btn-success" (click)="agregar()" data-bs-dismiss="modal">Guardar</button>
       </div>
     </div>
   </div>
@@ -111,21 +109,29 @@
       </div>
       <div class="modal-body">
         <div class="form-group mb-3">
-          <label>Nombre de Usuario</label>
-          <input type="text" placeholder="Ingrese su nombre" class="form-control" required>
+          <label>Nombre</label>
+          <input type="text" placeholder="Ingrese su nombre" class="form-control" [(ngModel)]="usuario.name" required>
         </div>
         <div class="form-group mb-3">
+          <label>Dirección</label>
+          <textarea class="form-control" [(ngModel)]="usuario.address" required></textarea>
+        </div>
+        <div class="form-group mb-3">
+          <label>Teléfono</label>
+          <input type="text" class="form-control" [(ngModel)]="usuario.cellphone" required>
+        </div>	
+        <div class="form-group mb-3">
           <label>Correo Electrónico</label>
-          <input type="email" class="form-control" required>
+          <input type="email" class="form-control" [(ngModel)]="usuario.email" required>
         </div>
         <div class="form-group mb-3">
           <label>Contraseña</label>
-          <input type="password" class="form-control" required>
+          <input type="password" class="form-control" [(ngModel)]="usuario.password" required>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success">Guardar</button>
+        <button type="button" class="btn btn-success" (click)="actualizar()" data-bs-dismiss="modal">Guardar</button>
       </div>
     </div>
   </div>
@@ -145,7 +151,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-danger">Eliminar</button>
+        <button type="button" class="btn btn-danger" (click)="eliminar()" data-bs-dismiss="modal">Eliminar</button>
       </div>
     </div>
   </div>
